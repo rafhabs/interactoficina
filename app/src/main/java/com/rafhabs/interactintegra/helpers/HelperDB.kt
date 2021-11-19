@@ -26,7 +26,7 @@ class HelperDB(
             "$COLUMNS_NOME TEXT NOT NULL," +
             "$COLUMNS_TELEFONE TEXT NOT NULL," +
             "" +
-            "PRIMARY KEY($COLUMNS_ID AUTOINCREMENT)" +
+            "PRIMARY KEY($COLUMNS_ID)" +
             ")"
 
     override fun onCreate(db: SQLiteDatabase?) {
