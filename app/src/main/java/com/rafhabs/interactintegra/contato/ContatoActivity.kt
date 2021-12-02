@@ -55,10 +55,20 @@ class ContatoActivity : BaseActivity()  {
     private fun onClickSalvarContato(){
         val nome = etNome.text.toString()
         val telefone = etTelefone.text.toString()
+        val os = etOS.text.toString()
+        val evento = etEvento.text.toString()
+        val datahorai = etDatahorai.text.toString()
+        val datahoraf = etDatahoraf.text.toString()
+        val observacao = etobs.text.toString()
         val contato = ContatosVO(
             idContato,
             nome,
-            telefone
+            telefone,
+            os,
+            evento,
+            datahorai,
+            datahoraf,
+            observacao
         )
 
         progress.visibility = View.VISIBLE

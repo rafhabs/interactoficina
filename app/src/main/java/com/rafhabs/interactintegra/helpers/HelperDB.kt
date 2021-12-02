@@ -20,11 +20,25 @@ class HelperDB(
     val COLUMNS_ID = "id"
     val COLUMNS_NOME = "nome"
     val COLUMNS_TELEFONE = "telefone"
+
+
+    val COLUMNS_OS = "os"
+    val COLUMNS_EVENTO = "evento"
+    val COLUMNS_DATAHORAI = "datahorai"
+    val COLUMNS_DATAHORAF = "datahoraf"
+    val COLUMNS_OBSERVACAO = "observacao"
+
+
     val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
     val CREATE_TABLE = "CREATE TABLE $TABLE_NAME (" +
             "$COLUMNS_ID INTEGER NOT NULL," +
             "$COLUMNS_NOME TEXT NOT NULL," +
             "$COLUMNS_TELEFONE TEXT NOT NULL," +
+            "$COLUMNS_OS TEXT NOT NULL," +
+            "$COLUMNS_EVENTO TEXT NOT NULL," +
+            "$COLUMNS_DATAHORAI TEXT NOT NULL," +
+            "$COLUMNS_DATAHORAF TEXT NOT NULL," +
+            "$COLUMNS_OBSERVACAO TEXT NOT NULL," +
             "" +
             "PRIMARY KEY($COLUMNS_ID)" +
             ")"
@@ -72,6 +86,11 @@ class HelperDB(
                 cursor.getInt(cursor.getColumnIndexOrThrow(COLUMNS_ID)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_NOME)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_TELEFONE))
+                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_OS)),
+                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_EVENTO)),
+                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_DATAHORAI)),
+                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_DATAHORAF)),
+                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_OBSERVACAO))
             )
             lista.add(contato)
 
@@ -86,6 +105,11 @@ class HelperDB(
         var content = ContentValues()
         content.put(COLUMNS_NOME,contatos.nome)
         content.put(COLUMNS_TELEFONE,contatos.telefone)
+        content.put(COLUMNS_OS,contatos.os)
+        content.put(COLUMNS_EVENTO,contatos.evento)
+        content.put(COLUMNS_DATAHORAI,contatos.datahorai)
+        content.put(COLUMNS_DATAHORAF,contatos.datahoraf)
+        content.put(COLUMNS_OBSERVACAO,contatos.observacao)
         db.insert(TABLE_NAME,null,content)
 
        // val sql = "INSERT INTO $TABLE_NAME ($COLUMNS_NOME, $COLUMNS_TELEFONE) VALUES (?,?)"
@@ -118,8 +142,8 @@ class HelperDB(
         val db = writableDatabase ?: return
 
 
-        val sql = "UPDATE $TABLE_NAME SET $COLUMNS_NOME = ? , $COLUMNS_TELEFONE = ? WHERE $COLUMNS_ID = ? "
-        val arg = arrayOf(contato.nome,contato.telefone,contato.id)
+        val sql = "UPDATE $TABLE_NAME SET $COLUMNS_NOME = ? , $COLUMNS_TELEFONE = ?, $COLUMNS_OS = ? , $COLUMNS_EVENTO = ?, $COLUMNS_DATAHORAI = ? , $COLUMNS_DATAHORAF = ?, $COLUMNS_OBSERVACAO = ? WHERE $COLUMNS_ID = ? "
+        val arg = arrayOf(contato.nome,contato.telefone,contato.os,contato.evento,contato.datahorai,contato.datahoraf,contato.id)
         db.execSQL(sql,arg)
 
         //val contant = ContentValues()
