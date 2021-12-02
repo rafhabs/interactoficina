@@ -12,7 +12,7 @@ class HelperDB(
 
     companion object {
         private val NOME_BANCO = "contato.db"
-        private val VERSAO_ATUAL = 12
+        private val VERSAO_ATUAL = 15
 
     }
 
@@ -85,12 +85,12 @@ class HelperDB(
             var contato = ContatosVO (
                 cursor.getInt(cursor.getColumnIndexOrThrow(COLUMNS_ID)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_NOME)),
-                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_TELEFONE))
-                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_OS)),
-                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_EVENTO)),
-                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_DATAHORAI)),
-                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_DATAHORAF)),
-                //cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_OBSERVACAO))
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_TELEFONE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_OS)),
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_EVENTO)),
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_DATAHORAI)),
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_DATAHORAF)),
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_OBSERVACAO))
             )
             lista.add(contato)
 
@@ -143,7 +143,7 @@ class HelperDB(
 
 
         val sql = "UPDATE $TABLE_NAME SET $COLUMNS_NOME = ? , $COLUMNS_TELEFONE = ?, $COLUMNS_OS = ? , $COLUMNS_EVENTO = ?, $COLUMNS_DATAHORAI = ? , $COLUMNS_DATAHORAF = ?, $COLUMNS_OBSERVACAO = ? WHERE $COLUMNS_ID = ? "
-        val arg = arrayOf(contato.nome,contato.telefone,contato.os,contato.evento,contato.datahorai,contato.datahoraf,contato.id)
+        val arg = arrayOf(contato.nome,contato.telefone,contato.os,contato.evento,contato.datahorai,contato.id)
         db.execSQL(sql,arg)
 
         //val contant = ContentValues()
