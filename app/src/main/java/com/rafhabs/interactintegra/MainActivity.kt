@@ -28,7 +28,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupToolBar(toolBar, "Lista de contatos",false)
+        setupToolBar(toolBar, "Interact - Apontamento",false)
         setupListView()
         setupOnClicks()
 

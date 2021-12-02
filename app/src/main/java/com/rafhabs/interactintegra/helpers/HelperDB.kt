@@ -143,7 +143,7 @@ class HelperDB(
 
 
         val sql = "UPDATE $TABLE_NAME SET $COLUMNS_NOME = ? , $COLUMNS_TELEFONE = ?, $COLUMNS_OS = ? , $COLUMNS_EVENTO = ?, $COLUMNS_DATAHORAI = ? , $COLUMNS_DATAHORAF = ?, $COLUMNS_OBSERVACAO = ? WHERE $COLUMNS_ID = ? "
-        val arg = arrayOf(contato.nome,contato.telefone,contato.os,contato.evento,contato.datahorai,contato.id)
+        val arg = arrayOf(contato.nome,contato.telefone,contato.os,contato.evento,contato.datahorai,contato.datahoraf,contato.observacao,contato.id)
         db.execSQL(sql,arg)
 
         //val contant = ContentValues()

@@ -26,12 +26,12 @@ class ContatoAdapter (
     override fun onBindViewHolder(holder: ContatoViewHolder, position: Int) {
         val contato = lista[position]
         with(holder.itemView){
-            tvNome.text = contato.nome
-            tvTelefone.text = contato.telefone
-            tvOs.text = contato.os
-            tvEvento.text = contato.evento
-            tvDataI.text = contato.datahorai
-            tvDataF.text = contato.datahoraf
+            tvNome.text = "Nome: "+contato.nome
+            tvTelefone.text = "Tel: "+contato.telefone
+            tvOs.text = "OS: "+contato.os
+            tvEvento.text = "Evento: "+contato.evento
+            tvDataI.text = "Inicio: "+contato.datahorai
+            tvDataF.text = "Fim: "+contato.datahoraf
             llItem.setOnClickListener { onClick(contato.id) }
         }
     }
