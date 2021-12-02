@@ -28,6 +28,10 @@ class ContatoAdapter (
         with(holder.itemView){
             tvNome.text = contato.nome
             tvTelefone.text = contato.telefone
+            tvOs.text = contato.os
+            tvEvento.text = contato.evento
+            tvDataI.text = contato.datahorai
+            tvDataF.text = contato.datahoraf
             llItem.setOnClickListener { onClick(contato.id) }
         }
     }

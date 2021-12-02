@@ -45,6 +45,11 @@ class ContatoActivity : BaseActivity()  {
             runOnUiThread {
                 etNome.setText(contato.nome)
                 etTelefone.setText(contato.telefone)
+                etOS.setText(contato.os)
+                etEvento.setText(contato.evento)
+                etDatahorai.setText(contato.datahorai)
+                etDatahoraf.setText(contato.datahoraf)
+                etobs.setText(contato.observacao)
                 progress.visibility = View.GONE
             }
 
@@ -68,7 +73,7 @@ class ContatoActivity : BaseActivity()  {
             evento,
             datahorai,
             datahoraf,
-            observacao
+            observacao,
         )
 
         progress.visibility = View.VISIBLE
