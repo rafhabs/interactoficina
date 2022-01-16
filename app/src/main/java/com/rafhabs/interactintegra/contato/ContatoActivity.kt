@@ -44,7 +44,7 @@ class ContatoActivity : BaseActivity()  {
 
             runOnUiThread {
                 etNome.setText(contato.nome)
-                etTelefone.setText(contato.telefone)
+                etcdEvento.setText(contato.codevento)
                 etOS.setText(contato.os)
                 etEvento.setText(contato.evento)
                 etDatahorai.setText(contato.datahorai)
@@ -59,7 +59,7 @@ class ContatoActivity : BaseActivity()  {
 
     private fun onClickSalvarContato(){
         val nome = etNome.text.toString()
-        val telefone = etTelefone.text.toString()
+        val codevento = etcdEvento.text.toString()
         val os = etOS.text.toString()
         val evento = etEvento.text.toString()
         val datahorai = etDatahorai.text.toString()
@@ -68,7 +68,7 @@ class ContatoActivity : BaseActivity()  {
         val contato = ContatosVO(
             idContato,
             nome,
-            telefone,
+            codevento,
             os,
             evento,
             datahorai,

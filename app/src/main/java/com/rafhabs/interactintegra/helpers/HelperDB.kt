@@ -12,14 +12,14 @@ class HelperDB(
 
     companion object {
         private val NOME_BANCO = "contato.db"
-        private val VERSAO_ATUAL = 15
+        private val VERSAO_ATUAL = 16
 
     }
 
     val TABLE_NAME = "contato"
     val COLUMNS_ID = "id"
     val COLUMNS_NOME = "nome"
-    val COLUMNS_TELEFONE = "telefone"
+    val COLUMNS_CODEVENTO = "codevento"
 
 
     val COLUMNS_OS = "os"
@@ -33,7 +33,7 @@ class HelperDB(
     val CREATE_TABLE = "CREATE TABLE $TABLE_NAME (" +
             "$COLUMNS_ID INTEGER NOT NULL," +
             "$COLUMNS_NOME TEXT NOT NULL," +
-            "$COLUMNS_TELEFONE TEXT NOT NULL," +
+            "$COLUMNS_CODEVENTO TEXT NOT NULL," +
             "$COLUMNS_OS TEXT NOT NULL," +
             "$COLUMNS_EVENTO TEXT NOT NULL," +
             "$COLUMNS_DATAHORAI TEXT NOT NULL," +
@@ -71,7 +71,7 @@ class HelperDB(
         }
         var cursor = db.query(TABLE_NAME,null,where,args,null,null,null)
 
-        //val sql = "SELECT * FROM $TABLE_NAME WHERE $COLUMNS_NOME like ? OR $COLUMNS_TELEFONE like ?"
+        //val sql = "SELECT * FROM $TABLE_NAME WHERE $COLUMNS_NOME like ? OR COLUMNS_CODEVENTO like ?"
         //var buscacomPercentual = "%$busca%"
         //var cursor = db.rawQuery(sql, buscacomPercentual) ?: return mutableListOf()
 
@@ -85,7 +85,7 @@ class HelperDB(
             var contato = ContatosVO (
                 cursor.getInt(cursor.getColumnIndexOrThrow(COLUMNS_ID)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_NOME)),
-                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_TELEFONE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_CODEVENTO)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_OS)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_EVENTO)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMNS_DATAHORAI)),
@@ -104,7 +104,7 @@ class HelperDB(
 
         var content = ContentValues()
         content.put(COLUMNS_NOME,contatos.nome)
-        content.put(COLUMNS_TELEFONE,contatos.telefone)
+        content.put(COLUMNS_CODEVENTO,contatos.codevento)
         content.put(COLUMNS_OS,contatos.os)
         content.put(COLUMNS_EVENTO,contatos.evento)
         content.put(COLUMNS_DATAHORAI,contatos.datahorai)
@@ -112,8 +112,8 @@ class HelperDB(
         content.put(COLUMNS_OBSERVACAO,contatos.observacao)
         db.insert(TABLE_NAME,null,content)
 
-       // val sql = "INSERT INTO $TABLE_NAME ($COLUMNS_NOME, $COLUMNS_TELEFONE) VALUES (?,?)"
-        // var array = arrayOf(contatos.nome, contatos.telefone)
+       // val sql = "INSERT INTO $TABLE_NAME ($COLUMNS_NOME, COLUMNS_CODEVENTO) VALUES (?,?)"
+        // var array = arrayOf(contatos.nome, contatos.codevento)
         //db.execSQL(sql, array)
 
         db.close()
@@ -142,8 +142,8 @@ class HelperDB(
         val db = writableDatabase ?: return
 
 
-        val sql = "UPDATE $TABLE_NAME SET $COLUMNS_NOME = ? , $COLUMNS_TELEFONE = ?, $COLUMNS_OS = ? , $COLUMNS_EVENTO = ?, $COLUMNS_DATAHORAI = ? , $COLUMNS_DATAHORAF = ?, $COLUMNS_OBSERVACAO = ? WHERE $COLUMNS_ID = ? "
-        val arg = arrayOf(contato.nome,contato.telefone,contato.os,contato.evento,contato.datahorai,contato.datahoraf,contato.observacao,contato.id)
+        val sql = "UPDATE $TABLE_NAME SET $COLUMNS_NOME = ? , $COLUMNS_CODEVENTO = ?, $COLUMNS_OS = ? , $COLUMNS_EVENTO = ?, $COLUMNS_DATAHORAI = ? , $COLUMNS_DATAHORAF = ?, $COLUMNS_OBSERVACAO = ? WHERE $COLUMNS_ID = ? "
+        val arg = arrayOf(contato.nome,contato.codevento,contato.os,contato.evento,contato.datahorai,contato.datahoraf,contato.observacao,contato.id)
         db.execSQL(sql,arg)
 
         //val contant = ContentValues()

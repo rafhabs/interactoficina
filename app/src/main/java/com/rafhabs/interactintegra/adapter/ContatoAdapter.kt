@@ -27,7 +27,7 @@ class ContatoAdapter (
         val contato = lista[position]
         with(holder.itemView){
             tvNome.text = "Nome: "+contato.nome
-            tvTelefone.text = "Tel: "+contato.telefone
+            tvCdevento.text = "Tel: "+contato.codevento
             tvOs.text = "OS: "+contato.os
             tvEvento.text = "Evento: "+contato.evento
             tvDataI.text = "Inicio: "+contato.datahorai
