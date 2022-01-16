@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import androidx.core.content.FileProvider.getUriForFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rafhabs.interactintegra.adapter.ContatoAdapter
 import com.rafhabs.interactintegra.application.ContatoApplication
@@ -123,13 +124,18 @@ class MainActivity : BaseActivity() {
         if(fileOut.exists())
             try {
 
+                // here, com.example.myapp.fileprovider should match the file provider in your manifest
+                val contentUri = getUriForFile(this.applicationContext, "com.rafhabs.interactintegra.fileprovider", fileOut)
+
+
+
                 val intent = Intent(Intent.ACTION_SEND)
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                intent.putExtra(Intent.EXTRA_STREAM, fileOut)
-                intent.type = "text/csv"
                 intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                startActivity(Intent.createChooser(intent, "Share File"))
-                println(" Debug1: sent page open successfully!")
+                intent.setDataAndType(
+                    contentUri,
+                    "text/csv")
+                intent.putExtra(Intent.EXTRA_STREAM, contentUri);
+                startActivity(intent)
 
             }catch (e: java.lang.Exception) {
                 e.printStackTrace()
