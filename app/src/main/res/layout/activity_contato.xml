@@ -38,7 +38,7 @@
                                 android:textColor="#FFFFFF"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Nome contato:"/>
+                                android:text="Tecnico:"/>
 
                         <EditText
                                 android:id="@+id/etNome"
@@ -179,13 +179,13 @@
                     <Button
                             android:id="@+id/btnExcluirContato"
                             android:onClick="onClickExcluirContato"
-                            android:text="Excluir contato"
+                            android:text="Excluir"
                             android:layout_marginTop="16dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                     <Button
                             android:id="@+id/btnSalvarConato"
-                            android:text="Salvar contato"
+                            android:text="Salvar"
                             android:layout_marginTop="16dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
