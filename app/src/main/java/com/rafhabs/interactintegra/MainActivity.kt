@@ -28,7 +28,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupToolBar(toolBar, "Interact - Apontamento",false)
+        setupToolBar(toolBar, "M&R - Manutenção - OS",false)
         setupListView()
         setupOnClicks()
 
