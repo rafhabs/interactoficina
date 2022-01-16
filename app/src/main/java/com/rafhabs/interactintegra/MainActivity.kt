@@ -1,24 +1,21 @@
 package com.rafhabs.interactintegra
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+
 import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-
-
-
-import com.rafhabs.interactintegra.R
-import com.rafhabs.interactintegra.base.BaseActivity
-import com.rafhabs.interactintegra.contato.ContatoActivity
 import com.rafhabs.interactintegra.adapter.ContatoAdapter
 import com.rafhabs.interactintegra.application.ContatoApplication
+import com.rafhabs.interactintegra.base.BaseActivity
+import com.rafhabs.interactintegra.contato.ContatoActivity
 import com.rafhabs.interactintegra.model.ContatosVO
-import com.rafhabs.interactintegra.singleton.ContatoSingleton
-
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.Exception
+import java.io.File
+
 
 class MainActivity : BaseActivity() {
 
@@ -37,6 +34,7 @@ class MainActivity : BaseActivity() {
     private fun setupOnClicks(){
         fab.setOnClickListener { onClickAdd() }
         ivBuscar.setOnClickListener { onClickBuscar() }
+        ivExport.setOnClickListener { onClickExportar() }
     }
 
     override fun onResume() {
@@ -80,6 +78,65 @@ class MainActivity : BaseActivity() {
     }
 
 
+
+    private fun onClickExportar(){
+
+        val busca = etBuscar.text.toString()
+        var listaFiltrada: List<ContatosVO> = mutableListOf()
+
+        try {
+            listaFiltrada = ContatoApplication.instance.helperDB?.buscarContatos(busca)?: mutableListOf()
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+
+        val csv_header = "os,codevento,evento,datahorai,datahoraf,observacao,nome"
+        var filename = "export.csv"
+
+        var path = getExternalFilesDir(null)   //get file directory for this package
+        //(Android/data/.../files | ... is your app package)
+
+        //create fileOut object
+        var fileOut = File(path, filename)
+        //delete any file object with path and filename that already exists
+        fileOut.delete()
+        //create a new file
+        fileOut.createNewFile()
+        //append the header and a newline
+        fileOut.appendText(csv_header)
+
+        for(OS in listaFiltrada){
+
+            fileOut.appendText("\n")
+            // trying to append some data into csv file
+            fileOut.appendText("${OS.os}")
+            fileOut.appendText(",${OS.codevento}")
+            fileOut.appendText(",${OS.evento}")
+            fileOut.appendText(",${OS.datahorai}")
+            fileOut.appendText(",${OS.datahoraf}")
+            fileOut.appendText(",${OS.observacao}")
+            fileOut.appendText(",${OS.nome}")
+            fileOut.appendText("")
+
+        }
+
+        if(fileOut.exists())
+            try {
+
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                intent.putExtra(Intent.EXTRA_STREAM, fileOut)
+                intent.type = "text/csv"
+                intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                startActivity(Intent.createChooser(intent, "Share File"))
+                println(" Debug1: sent page open successfully!")
+
+            }catch (e: java.lang.Exception) {
+                e.printStackTrace()
+                println("debug: failed")
+            }
+
+    }
 
     private fun setupListView(){
         recyclerView.layoutManager = LinearLayoutManager(this)
