@@ -127,8 +127,6 @@ class MainActivity : BaseActivity() {
                 // here, com.example.myapp.fileprovider should match the file provider in your manifest
                 val contentUri = getUriForFile(this.applicationContext, "com.rafhabs.interactintegra.fileprovider", fileOut)
 
-
-
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
                 intent.setDataAndType(
