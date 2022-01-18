@@ -2,11 +2,10 @@ package com.rafhabs.interactintegra
 
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.FileProvider
 import androidx.core.content.FileProvider.getUriForFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rafhabs.interactintegra.adapter.ContatoAdapter
@@ -22,15 +21,21 @@ class MainActivity : BaseActivity() {
 
     private var adapter:ContatoAdapter? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setupToolBar(toolBar, "M&R - Manutenção - OS",false)
+
         setupListView()
         setupOnClicks()
 
+
     }
+
+
 
     private fun setupOnClicks(){
         fab.setOnClickListener { onClickAdd() }

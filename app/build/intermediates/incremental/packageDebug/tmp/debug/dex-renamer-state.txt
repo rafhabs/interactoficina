@@ -1,4 +1,4 @@
-#Mon Jan 17 07:37:46 BRT 2022
+#Tue Jan 18 20:20:58 BRT 2022
 base.0=/home/rafhael/workspace/InteractOficina/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

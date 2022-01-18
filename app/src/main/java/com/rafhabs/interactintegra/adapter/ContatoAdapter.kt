@@ -28,7 +28,7 @@ class ContatoAdapter (
         with(holder.itemView){
             tvNome.text = "Tecnico: "+contato.nome
             tvOs.text = "OS: "+contato.os
-            tvCdevento.text = "Codigo: "+contato.codevento
+            //tvCdevento.text = "Codigo: "+contato.codevento
             tvEvento.text = "Evento: "+contato.evento
             tvDataI.text = "Inicio: "+contato.datahorai
             tvDataF.text = "Fim: "+contato.datahoraf

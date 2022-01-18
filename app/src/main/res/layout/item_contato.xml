@@ -25,12 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OS: Teste"/>
-        <TextView
-                android:id="@+id/tvCdevento"
-                android:textColor="#FFFFFF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cod Evento: Teste"/>
+
         <TextView
                 android:id="@+id/tvEvento"
                 android:textColor="#FFFFFF"
